@@ -43,7 +43,7 @@ cls
 echo.
 echo ╔═══════════════════════════════════════════════════════════════════════════╗
 echo ║                                                                           ║
-echo ║        ██████╗ ██╗   ██╗     ██████╗ ███████╗ █████╗ ███╗   ██╗         ║
+echo ║        ██████╗ ██╗   ██╗     ██████╗ ███████╗ █████╗ ███╗  ██╗         ║
 echo ║        ██╔══██╗╚██╗ ██╔╝    ██╔═══██╗╚══███╔╝██╔══██╗████╗  ██║         ║
 echo ║        ██████╔╝ ╚████╔╝     ██║   ██║  ███╔╝ ███████║██╔██╗ ██║         ║
 echo ║        ██╔══██╗  ╚██╔╝      ██║   ██║ ███╔╝  ██╔══██║██║╚██╗██║         ║
@@ -66,7 +66,7 @@ echo │  [6]  Bileşen Temizleme (StartComponentCleanup)                       
 echo │  [7]  Bileşen Deposu Analizi                                             │
 echo │  [8]  SFC Yalnızca Doğrulama (Onarım Yapmadan)                           │
 echo ├───────────────────────────────────────────────────────────────────────────┤
-echo │                         SISTEM BİLGİ VE ARAÇLAR                           │
+echo │                      SISTEM BİLGİ VE ARAÇLAR                           │
 echo ├───────────────────────────────────────────────────────────────────────────┤
 echo │  [9]  Ağ Sıfırlama (Winsock ^& DNS Flush)                                 │
 echo │  [10] Boot Bilgisi Göster (bcdedit)                                      │
@@ -75,47 +75,48 @@ echo │  [12] Sürücü Doğrulayıcı Başlat (Driver Verifier)               
 echo │  [13] Windows Defender Tehdit Geçmişi                                    │
 echo │  [14] Sistem Geri Yükleme Başlat                                         │
 echo ├───────────────────────────────────────────────────────────────────────────┤
-echo │                         TEMİZLİK VE OPTİMİZASYON                          │
+echo │             TEMİZLİK VE OPTİMİZASYON                          │
 echo ├───────────────────────────────────────────────────────────────────────────┤
 echo │  [15] Windows Update Cache Temizle                                       │
 echo │  [16] Microsoft Store Cache Sıfırla                                      │
 echo │  [17] Bloatware Kaldır (OneDrive, Xbox, Candy, vb.)                      │
 echo ├───────────────────────────────────────────────────────────────────────────┤
-echo │                         GELİŞMİŞ İŞLEMLER                                 │
+echo │                         GELİŞMİŞ İŞLEMLER                                  │
 echo ├───────────────────────────────────────────────────────────────────────────┤
 echo │  [18] Hosts Dosyası İşlemleri (Yedekle/Geri Yükle/Reklam Engelle)       │
 echo │  [19] Uzak Masaüstü Port ^& Firewall Ayarla                               │
 echo │  [20] Hızlı Kapatma / Yeniden Başlatma                                   │
 echo │  [21] BSOD Minidump Topla ve ZIP'le                                      │
 echo ├───────────────────────────────────────────────────────────────────────────┤
-echo │  [0]  ÇIKIŞ                                                               │
+echo │  [0]  ÇIKIŞ                                                                │
 echo └───────────────────────────────────────────────────────────────────────────┘
 echo.
 set /p secim=" Seçiminiz (0-21): "
 
 ::----------- BAKIM ONARIM BLOKLARI -----------::
-if "%secim%"=="1"  call :WRAP 1  "SFC /scannow"                  sfc /scannow
-if "%secim%"=="2"  call :WRAP 2  "DISM RestoreHealth"           DISM /Online /Cleanup-Image /RestoreHealth
-if "%secim%"=="3"  call :WRAP 3  "DISM CheckHealth"             DISM /Online /Cleanup-Image /CheckHealth
-if "%secim%"=="4"  call :WRAP 4  "DISM ScanHealth"              DISM /Online /Cleanup-Image /ScanHealth
-if "%secim%"=="5"  call :WRAP 5  "chkdsk C: /f /r"              chkdsk C: /f /r
-if "%secim%"=="6"  call :WRAP 6  "StartComponentCleanup"        DISM /Online /Cleanup-Image /StartComponentCleanup
-if "%secim%"=="7"  call :WRAP 7  "AnalyzeComponentStore"        DISM /Online /Cleanup-Image /AnalyzeComponentStore
-if "%secim%"=="8"  call :WRAP 8  "sfc /verifyonly"              sfc /verifyonly
-if "%secim%"=="9"  call :WRAP 9  "Ag Sifirlama"                 netsh winsock reset ^& ipconfig /flushdns
-if "%secim%"=="10" call :WRAP 10 "bcdedit /enum"                bcdedit /enum
-if "%secim%"=="11" call :WRAP 11 "systeminfo"                   systeminfo
-if "%secim%"=="12" call :WRAP 12 "verifier"                     verifier
-if "%secim%"=="13" call :WRAP 13 "Defender Gecmisi"             powershell -NoLogo "Get-MpThreatDetection"
+:: DÜZELTME NOTU: Tüm komutlar çift tırnak içine alındı.
+if "%secim%"=="1"  call :WRAP 1  "SFC /scannow"                  "sfc /scannow"
+if "%secim%"=="2"  call :WRAP 2  "DISM RestoreHealth"            "DISM /Online /Cleanup-Image /RestoreHealth"
+if "%secim%"=="3"  call :WRAP 3  "DISM CheckHealth"              "DISM /Online /Cleanup-Image /CheckHealth"
+if "%secim%"=="4"  call :WRAP 4  "DISM ScanHealth"               "DISM /Online /Cleanup-Image /ScanHealth"
+if "%secim%"=="5"  call :WRAP 5  "chkdsk C: /f /r"               "chkdsk C: /f /r"
+if "%secim%"=="6"  call :WRAP 6  "StartComponentCleanup"         "DISM /Online /Cleanup-Image /StartComponentCleanup"
+if "%secim%"=="7"  call :WRAP 7  "AnalyzeComponentStore"         "DISM /Online /Cleanup-Image /AnalyzeComponentStore"
+if "%secim%"=="8"  call :WRAP 8  "sfc /verifyonly"               "sfc /verifyonly"
+if "%secim%"=="9"  call :WRAP 9  "Ag Sifirlama"                  "netsh winsock reset & ipconfig /flushdns"
+if "%secim%"=="10" call :WRAP 10 "bcdedit /enum"                 "bcdedit /enum"
+if "%secim%"=="11" call :WRAP 11 "systeminfo"                    "systeminfo"
+if "%secim%"=="12" call :WRAP 12 "verifier"                      "verifier"
+if "%secim%"=="13" call :WRAP 13 "Defender Gecmisi"              "powershell -NoLogo Get-MpThreatDetection"
 if "%secim%"=="14" goto INFO_RESTORE
-if "%secim%"=="15" call :WRAP 15 "WinUpdate Cache Temizle"      call :UPDATE_CACHE_CLEAN
-if "%secim%"=="16" call :WRAP 16 "Store Cache Sifirla"          wsreset.exe
-if "%secim%"=="17" call :WRAP 17 "Bloatware Kaldir"             call :BLOAT_REMOVE
-if "%secim%"=="18" call :WRAP 18 "Hosts Islemleri"              call :HOSTS_OPS
-if "%secim%"=="19" call :WRAP 19 "RDP Port ^& Firewall"         call :RDP_PORT_FW
-if "%secim%"=="20" call :WRAP 20 "Hizli Shutdown / Reboot"      call :FAST_POWER
-if "%secim%"=="21" call :WRAP 21 "BSOD Dump Topla"              call :COLLECT_BSOD
-if "%secim%"=="22" call :WRAP 22 "Temp/Prefetch Temizle"      call :TEMP_PREFETCH_CLEAN
+if "%secim%"=="15" call :WRAP 15 "WinUpdate Cache Temizle"       "call :UPDATE_CACHE_CLEAN"
+if "%secim%"=="16" call :WRAP 16 "Store Cache Sifirla"           "wsreset.exe"
+if "%secim%"=="17" call :WRAP 17 "Bloatware Kaldir"              "call :BLOAT_REMOVE"
+if "%secim%"=="18" call :WRAP 18 "Hosts Islemleri"               "call :HOSTS_OPS"
+if "%secim%"=="19" call :WRAP 19 "RDP Port & Firewall"           "call :RDP_PORT_FW"
+if "%secim%"=="20" call :WRAP 20 "Hizli Shutdown / Reboot"       "call :FAST_POWER"
+if "%secim%"=="21" call :WRAP 21 "BSOD Dump Topla"               "call :COLLECT_BSOD"
+if "%secim%"=="22" call :WRAP 22 "Temp/Prefetch Temizle"         "call :TEMP_PREFETCH_CLEAN"
 if "%secim%"=="0"  goto EXIT_PROGRAM
 goto MENU
 
@@ -223,7 +224,6 @@ echo ┌────────────────────────
 echo │  TEMP ^& PREFETCH Klasörleri Temizleniyor...        │
 echo └─────────────────────────────────────────────────────┘
 echo.
-
 set "tempCleanLog=%LOG%\TempClean_%DATE:~-4,4%%DATE:~3,2%%DATE:~0,2%.log"
 
 >>"%tempCleanLog%" 2>&1 (
@@ -269,7 +269,8 @@ goto :eof
 :WRAP
 setLocal
 set "DESC=%~2"
-shift & shift
+set "CMD_RUN=%~3"
+
 echo.
 echo ╔═══════════════════════════════════════════════════════╗
 echo ║  İşlem: %DESC%
@@ -277,7 +278,10 @@ echo ╚════════════════════════
 call :onayla "%DESC%"
 if errorlevel 1 (
   >> "%LOG%\%DATE:~-4,4%-%DATE:~3,2%-%DATE:~0,2%.log" echo [%DATE% %TIME%] %DESC% basliyor
-  %*
+  
+  REM DÜZELTME NOTU: %* yerine direkt olarak 3. argümanı çalıştırıyoruz.
+  %CMD_RUN%
+  
   >> "%LOG%\%DATE:~-4,4%-%DATE:~3,2%-%DATE:~0,2%.log" echo [%DATE% %TIME%] %DESC% bitti
 )
 pause
