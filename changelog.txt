@@ -17,12 +17,3 @@ DÜZENLEMELER:
 - [LOG] Loglama sistemi güncellendi. Artık tüm işlemler "%USERPROFILE%\Logs\Repair" altında tarihli olarak tutuluyor .
 - [SİSTEM] Temp ve Prefetch temizliği için detaylı raporlama eklendi .
 
-[v7.5.0] - (Eski Sürüm)
-- Windows Update Cache temizleme sorunu giderildi.
-- "DISM /AnalyzeComponentStore" seçeneği eklendi.
-- Sürücü Doğrulayıcı (Verifier) menüye dahil edildi.
-
-[v7.0.0] - (Eski Sürüm)
-- İlk genel kararlı sürüm.
-- SFC ve DISM onarım döngüleri eklendi.
-- Temel ağ sıfırlama (Winsock reset) özellikleri eklendi.
